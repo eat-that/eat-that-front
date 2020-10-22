@@ -12,6 +12,10 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 
 const useStyles = makeStyles((theme) => ({
     navBar:{
+        borderRadius: '0 0 10px 10px'
+    },
+
+    navBarContent:{
         display:'flex',
         flexDirection:'column',
         width:'100%'
@@ -48,9 +52,9 @@ const Header = () => {
     const classes = useStyles();
 
     return(
-        <AppBar position='static'>
+        <AppBar position='static' className={classes.navBar}>
             <Toolbar>
-                <div className={classes.navBar}>
+                <div className={classes.navBarContent}>
 
                     <div className={classes.row1}>
                         <Button className={classes.button}>
