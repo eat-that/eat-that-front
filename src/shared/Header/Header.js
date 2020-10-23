@@ -10,10 +10,12 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import PersonIcon from '@material-ui/icons/Person';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import CreateUserAccount from "../../components/Account/CreateUserAccount/CreateUserAccount";
+import {background} from "../colors";
 
 const useStyles = makeStyles((theme) => ({
     navBar:{
-        borderRadius: '0 0 10px 10px'
+        borderRadius: '0 0 10px 10px',
+        background:background
     },
 
     navBarContent:{
