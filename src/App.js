@@ -5,15 +5,16 @@ import {Redirect, Route, Router, Switch} from "react-router-dom";
 import Header from "./shared/Header/Header";
 import {createMuiTheme} from "@material-ui/core";
 import {ThemeProvider} from "@material-ui/styles";
+import {danger, primary, secondary} from "./shared/colors";
 
 const theme = createMuiTheme({
     palette:{
         primary : {
-            main : '#E2711D'
+            main : primary
         },
         secondary : {
-            main : '#FF9505'
-        }
+            main : secondary
+        },
     }
 });
 
