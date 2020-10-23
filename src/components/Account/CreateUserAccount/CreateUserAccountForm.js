@@ -1,20 +1,53 @@
-import React, {forwardRef, useEffect, useImperativeHandle, useLayoutEffect, useRef} from 'react'
+import React from 'react'
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {primary} from "../../../shared/colors";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import LockIcon from '@material-ui/icons/Lock';
+import NameIcon from "@material-ui/icons/SupervisorAccount";
+import EmailIcon from '@material-ui/icons/Email';
+import {secondary} from "../../../shared/colors";
+import frLocale from "date-fns/locale/fr";
+import format from "date-fns/format";
+import TodayIcon from '@material-ui/icons/Today';
+import {
+    DatePicker,
+} from 'formik-material-ui-pickers';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+import {Field} from "formik";
+import PhoneIcon from '@material-ui/icons/Phone';
+
+class FrLocalizedUtils extends DateFnsUtils {
+    getDatePickerHeaderText(date) {
+        return format(date, "d MMM yyyy", { locale: frLocale });
+    }
+}
 
 const useStyles = makeStyles((theme) => ({
+    form:{
+        display:'flex',
+        flexDirection:'column',
+        height:'100%'
+    },
+    formContent:{
+        flex:'1 0 auto'
+    },
     submit:{
         color:'white',
-        position:'absolute',
-        bottom:'0'
+        flexShrink:0,
+        width:'unset',
+        margin:'5px'
+    },
+    icon:{
+        color:secondary
+    },
+    input:{
+        margin:'10px 0 10px 0'
     }
 }));
 
 const CreateUserAccountForm  = (props) => {
-
-    const firstRender = useRef(true);
 
     const {
         values: {firstName, lastName, email,password, confirmPassword, phone, birthDate},
@@ -28,15 +61,6 @@ const CreateUserAccountForm  = (props) => {
         submit
     } = props;
 
-    useLayoutEffect(() => {
-        console.log('here',props,firstRender)
-        if(!firstRender.current){
-            handleSubmit()
-        }
-        firstRender.current = false;
-
-    },[submit])
-
     const change = (name, e) => {
         e.persist();
         handleChange(e);
@@ -46,8 +70,10 @@ const CreateUserAccountForm  = (props) => {
     const classes = useStyles();
 
     return(
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={classes.form}>
+            <div className={classes.formContent}>
             <TextField
+                className={classes.input}
                 name='firstName'
                 helperText={touched.firstName ? errors.firstName : ''}
                 error={touched.firstName && Boolean(errors.firstName)}
@@ -56,9 +82,17 @@ const CreateUserAccountForm  = (props) => {
                 value={firstName}
                 onBlur={handleBlur}
                 onChange={handleChange}
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start" className={classes.icon}>
+                            <NameIcon />
+                        </InputAdornment>
+                    )
+                }}
             />
 
             <TextField
+                className={classes.input}
                 name='lastName'
                 helperText={touched.lastName ? errors.lastName : ''}
                 error={touched.lastName && Boolean(errors.lastName)}
@@ -67,10 +101,18 @@ const CreateUserAccountForm  = (props) => {
                 value={lastName}
                 onBlur={handleBlur}
                 onChange={handleChange}
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start" className={classes.icon}>
+                            <NameIcon />
+                        </InputAdornment>
+                    )
+                }}
             />
 
 
             <TextField
+                className={classes.input}
                 name='email'
                 helperText={touched.email ? errors.email : ''}
                 error={touched.email && Boolean(errors.email)}
@@ -79,8 +121,90 @@ const CreateUserAccountForm  = (props) => {
                 value={email}
                 onBlur={handleBlur}
                 onChange={handleChange}
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start" className={classes.icon}>
+                            <EmailIcon />
+                        </InputAdornment>
+                    )
+                }}
             />
 
+            <TextField
+                className={classes.input}
+                name='password'
+                helperText={touched.password ? errors.password : ''}
+                error={touched.password && Boolean(errors.password)}
+                label='Mot de passe'
+                fullWidth
+                value={password}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start" className={classes.icon}>
+                            <LockIcon />
+                        </InputAdornment>
+                    )
+                }}
+            />
+
+            <TextField
+                className={classes.input}
+                name='confirmPassword'
+                helperText={touched.confirmPassword ? errors.confirmPassword : ''}
+                error={touched.confirmPassword && Boolean(errors.confirmPassword)}
+                label='Confirmation mot de passe'
+                fullWidth
+                value={confirmPassword}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start" className={classes.icon}>
+                            <LockIcon />
+                        </InputAdornment>
+                    )
+                }}
+            />
+
+            <MuiPickersUtilsProvider utils={FrLocalizedUtils} locale={frLocale}>
+                <Field component={DatePicker}
+                       name="birthDate"
+                       label="Date de naissance"
+                       format="d MMM yyyy"
+                       fullWidth
+                       value={birthDate}
+                       className={classes.input}
+                       InputProps={{
+                           startAdornment: (
+                               <InputAdornment position="start" className={classes.icon}>
+                                   <TodayIcon />
+                               </InputAdornment>
+                           )
+                       }}/>
+            </MuiPickersUtilsProvider>
+
+            <TextField
+                className={classes.input}
+                name='phone'
+                helperText={touched.phone ? errors.phone : ''}
+                error={touched.phone && Boolean(errors.phone)}
+                label='N° de téléphone'
+                fullWidth
+                value={phone}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start" className={classes.icon}>
+                            <PhoneIcon />
+                        </InputAdornment>
+                    )
+                }}
+            />
+
+            </div>
             <Button
             type='submit'
             fullWidth
