@@ -9,6 +9,7 @@ import SearchIcon from '@material-ui/icons/Search'
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import PersonIcon from '@material-ui/icons/Person';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import CreateUserAccount from "../../components/Account/CreateUserAccount/CreateUserAccount";
 
 const useStyles = makeStyles((theme) => ({
     navBar:{
@@ -49,6 +50,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Header = () => {
 
+    const [open,setOpen] = React.useState(false);
+
     const classes = useStyles();
 
     return(
@@ -61,7 +64,7 @@ const Header = () => {
                             <EmojiPeopleIcon className={classes.icon}/>
                             Votre position
                         </Button>
-                        <IconButton className={classes.icon}>
+                        <IconButton className={classes.icon} onClick={() => setOpen(true)}>
                             <PersonIcon/>
                         </IconButton>
                     </div>
@@ -83,6 +86,12 @@ const Header = () => {
 
                 </div>
             </Toolbar>
+
+            <CreateUserAccount
+                open={open}
+                setOpen={() => setOpen(false)}
+            />
+
         </AppBar>
     )
 }
