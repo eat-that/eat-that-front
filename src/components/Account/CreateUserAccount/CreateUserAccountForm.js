@@ -43,7 +43,8 @@ const useStyles = makeStyles((theme) => ({
         color:secondary
     },
     input:{
-        margin:'10px 0 10px 0'
+        margin:'10px 5% 10px 5%',
+        width:'90%'
     }
 }));
 
@@ -78,7 +79,6 @@ const CreateUserAccountForm  = (props) => {
                 helperText={touched.firstName ? errors.firstName : ''}
                 error={touched.firstName && Boolean(errors.firstName)}
                 label='Prénom'
-                fullWidth
                 value={firstName}
                 onBlur={handleBlur}
                 onChange={handleChange}
@@ -97,7 +97,6 @@ const CreateUserAccountForm  = (props) => {
                 helperText={touched.lastName ? errors.lastName : ''}
                 error={touched.lastName && Boolean(errors.lastName)}
                 label='Nom'
-                fullWidth
                 value={lastName}
                 onBlur={handleBlur}
                 onChange={handleChange}
@@ -117,7 +116,6 @@ const CreateUserAccountForm  = (props) => {
                 helperText={touched.email ? errors.email : ''}
                 error={touched.email && Boolean(errors.email)}
                 label='Email'
-                fullWidth
                 value={email}
                 onBlur={handleBlur}
                 onChange={handleChange}
@@ -136,7 +134,6 @@ const CreateUserAccountForm  = (props) => {
                 helperText={touched.password ? errors.password : ''}
                 error={touched.password && Boolean(errors.password)}
                 label='Mot de passe'
-                fullWidth
                 value={password}
                 onBlur={handleBlur}
                 onChange={handleChange}
@@ -155,7 +152,6 @@ const CreateUserAccountForm  = (props) => {
                 helperText={touched.confirmPassword ? errors.confirmPassword : ''}
                 error={touched.confirmPassword && Boolean(errors.confirmPassword)}
                 label='Confirmation mot de passe'
-                fullWidth
                 value={confirmPassword}
                 onBlur={handleBlur}
                 onChange={handleChange}
@@ -173,7 +169,6 @@ const CreateUserAccountForm  = (props) => {
                        name="birthDate"
                        label="Date de naissance"
                        format="d MMM yyyy"
-                       fullWidth
                        value={birthDate}
                        className={classes.input}
                        InputProps={{
@@ -191,7 +186,6 @@ const CreateUserAccountForm  = (props) => {
                 helperText={touched.phone ? errors.phone : ''}
                 error={touched.phone && Boolean(errors.phone)}
                 label='N° de téléphone'
-                fullWidth
                 value={phone}
                 onBlur={handleBlur}
                 onChange={handleChange}
