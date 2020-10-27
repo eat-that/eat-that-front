@@ -23,7 +23,7 @@ const EstablishmentList = () => {
     }
 
     return (
-        <Carousel partialVisible={true} responsive={ responsive}>
+        <Carousel partialVisible={true} responsive={ responsive}  removeArrowOnDeviceType={["tablet", "mobile"]}>
             <EstablishmentCard/>
             <EstablishmentCard/>
             <EstablishmentCard/>
