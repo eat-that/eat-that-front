@@ -9,6 +9,7 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import RoomIcon from '@material-ui/icons/Room';
 import StarRateIcon from '@material-ui/icons/StarRate';
 import {useHistory} from 'react-router-dom';
+import Menu from "./Menu";
 
 
 
@@ -89,6 +90,7 @@ const EstablishmentDetail = (props) => {
                 <RoomIcon/> {establishment.address}
             </Typography>
         </Paper>
+        <Menu />
     </div>
     )
 }
