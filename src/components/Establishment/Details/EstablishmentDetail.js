@@ -10,7 +10,9 @@ import RoomIcon from '@material-ui/icons/Room';
 import StarRateIcon from '@material-ui/icons/StarRate';
 import {useHistory} from 'react-router-dom';
 import Menu from "./Menu";
-
+import ShowOnScroll from "../../../shared/ShowOnScroll";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
 
 
 const useStyles = makeStyles({
@@ -63,35 +65,47 @@ const EstablishmentDetail = (props) => {
     const classes= useStyles();
     const history = useHistory();
 
-
     return(
-    <div>
-        <IconButton className={classes.backButton} onClick={() => history.goBack()}>
-            <ArrowBackIcon/>
-        </IconButton>
-        <IconButton className={classes.favButton}>
-            <FavoriteBorderIcon/>
-        </IconButton>
-        <img className={classes.img} src={require('../../../shared/f765abb2-31b2-45d6-b9d3-b82778358a3b.jpg')} alt='picture'/>
-        <Paper className={classes.paper}>
-            <Typography className={classes.name} variant='h4' component='h2' color='textPrimary'>{establishment.name}</Typography>
-            <Typography className={classes.p} variant="body2" color='textSecondary' component='p'>
-                {establishment.description}
-            </Typography>
-            <Typography className={classes.p} color='textSecondary'>
-                {establishment.score}<StarRateIcon/>
-            </Typography>
-        </Paper>
-        <Paper className={classes.paper}>
-            <Typography variant='h6' className={classes.infos}>
-                Informations sur l'établissement
-            </Typography>
-            <Typography className={classes.p} variant="body2" color='textSecondary' component='p'>
-                <RoomIcon/> {establishment.address}
-            </Typography>
-        </Paper>
-        <Menu />
-    </div>
+    <>
+        <ShowOnScroll {...props}>
+            <AppBar>
+                <Toolbar>
+                    <IconButton  onClick={() => history.goBack()}>
+                        <ArrowBackIcon/>
+                    </IconButton>
+                    <Typography>{establishment.name}</Typography>
+                </Toolbar>
+            </AppBar>
+        </ShowOnScroll>
+
+        <div>
+            <IconButton className={classes.backButton} onClick={() => history.goBack()}>
+                <ArrowBackIcon/>
+            </IconButton>
+            <IconButton className={classes.favButton}>
+                <FavoriteBorderIcon/>
+            </IconButton>
+            <img className={classes.img} src={require('../../../shared/f765abb2-31b2-45d6-b9d3-b82778358a3b.jpg')} alt='picture'/>
+            <Paper className={classes.paper}>
+                <Typography className={classes.name} variant='h4' component='h2' color='textPrimary'>{establishment.name}</Typography>
+                <Typography className={classes.p} variant="body2" color='textSecondary' component='p'>
+                    {establishment.description}
+                </Typography>
+                <Typography className={classes.p} color='textSecondary'>
+                    {establishment.score}<StarRateIcon/>
+                </Typography>
+            </Paper>
+            <Paper className={classes.paper}>
+                <Typography variant='h6' className={classes.infos}>
+                    Informations sur l'établissement
+                </Typography>
+                <Typography className={classes.p} variant="body2" color='textSecondary' component='p'>
+                    <RoomIcon/> {establishment.address}
+                </Typography>
+            </Paper>
+            <Menu />
+        </div>
+    </>
     )
 }
 

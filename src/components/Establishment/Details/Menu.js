@@ -1,13 +1,11 @@
 import React from 'react'
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
-import MenuItem from "./MenuItem";
 import MenuCategory from "./MenuCategory";
 
 const Menu = () => {
     const menuList = [
         {
             category: 'Boissons',
+            description:'glouglou',
             dishs:[
                 {
                 name:'Coca',
@@ -27,7 +25,29 @@ const Menu = () => {
         },
         {
             category: 'Plats',
+            description:'miam miam',
             dishs:[
+                {
+                    name:'Carbonnadee',
+                    description:'C BON SA MERE',
+                    price:'19€',
+                    picture:'../../../shared/f765abb2-31b2-45d6-b9d3-b82778358a3b.jpg',
+                    allergens:'c pas hallal'
+                },
+                {
+                    name:'Carbonnadee',
+                    description:'C BON SA MERE',
+                    price:'19€',
+                    picture:'../../../shared/f765abb2-31b2-45d6-b9d3-b82778358a3b.jpg',
+                    allergens:'c pas hallal'
+                },
+                {
+                    name:'Carbonnadee',
+                    description:'C BON SA MERE',
+                    price:'19€',
+                    picture:'../../../shared/f765abb2-31b2-45d6-b9d3-b82778358a3b.jpg',
+                    allergens:'c pas hallal'
+                },
                 {
                     name:'Carbonnadee',
                     description:'C BON SA MERE',
@@ -39,13 +59,9 @@ const Menu = () => {
         }
     ]
 
-    // const menu = menuList.map((m) => <MenuCategory category={m}/>
-
-
-
     return(
         menuList.map(m => <MenuCategory category={m}/>)
-        // <div>cc</div>
     )
 };
+
 export default Menu;
