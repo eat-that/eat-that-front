@@ -2,7 +2,7 @@ import React from 'react'
 import makeStyles from "@material-ui/styles/makeStyles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import {primary, secondary} from "../../../shared/colors";
+import {background, primary, secondary} from "../../../shared/colors";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
@@ -57,6 +57,9 @@ const useStyles = makeStyles({
         color:secondary,
         textAlign:'left',
         padding:'10px 10px 10px 20px'
+    },
+    navBar:{
+        background:background
     }
 });
 
@@ -68,7 +71,7 @@ const EstablishmentDetail = (props) => {
     return(
     <>
         <ShowOnScroll {...props}>
-            <AppBar>
+            <AppBar className={classes.navBar}>
                 <Toolbar>
                     <IconButton  onClick={() => history.goBack()}>
                         <ArrowBackIcon/>

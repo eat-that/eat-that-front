@@ -2,14 +2,16 @@ import React from 'react'
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import makeStyles from "@material-ui/styles/makeStyles";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles({
     container:{
-        margin:'10px',
+        margin:'10px auto auto auto',
         display:'flex',
         flexDirection:'row',
         justifyContent:'space-between',
-        padding:'5px'
+        padding:'5px',
+        width: '100%'
     },
     name : {
         textAlign:'left',
@@ -36,7 +38,7 @@ const MenuItem = (props) => {
     const {dish} = props;
     const classes = useStyles();
     return(
-        <div className={classes.container}>
+        <Button className={classes.container} onClick={() => console.log('clicked')}>
             <div>
                 <Typography className={classes.name}>{dish.name}</Typography>
                 <Typography className={classes.desc} variant="body2" color='textSecondary' component='p'>{dish.description}</Typography>
@@ -45,7 +47,7 @@ const MenuItem = (props) => {
             <div>
                 <img className={classes.img} src={require('../../../shared/f765abb2-31b2-45d6-b9d3-b82778358a3b.jpg')}/>
             </div>
-        </div>
+        </Button>
     )
 };
 export default MenuItem;

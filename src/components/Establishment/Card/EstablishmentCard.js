@@ -11,10 +11,14 @@ import Chip from "@material-ui/core/Chip";
 import {primary, secondary} from "../../../shared/colors";
 import {Link} from "react-router-dom";
 
+
+const EstablishmentCard = (props) => {
 const useStyles = makeStyles({
     card: {
-        margin:'10px',
-        borderRadius:'2px'
+        margin: props.width ? '10px auto auto auto' : '10px',
+        borderRadius:'2px',
+        position:'relative',
+        width: props.width ? props.width : 'unset'
     },
     media : {
         height:100
@@ -42,8 +46,6 @@ const useStyles = makeStyles({
     }
 
 })
-
-const EstablishmentCard = () => {
     const [establishment,setEstablishment] = useState({
         name:'3 Brasseurs',
         description:'Petite bière avec de la bonne bouffe',
