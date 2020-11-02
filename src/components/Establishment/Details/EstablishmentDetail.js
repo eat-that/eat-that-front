@@ -4,15 +4,17 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import {background, primary, secondary} from "../../../shared/colors";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import SearchIcon from '@material-ui/icons/Search';
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import RoomIcon from '@material-ui/icons/Room';
 import StarRateIcon from '@material-ui/icons/StarRate';
-import {useHistory} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import Menu from "./Menu";
 import ShowOnScroll from "../../../shared/ShowOnScroll";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
+import Card from "@material-ui/core/Card";
 
 
 const useStyles = makeStyles({
@@ -59,11 +61,20 @@ const useStyles = makeStyles({
         padding:'10px 10px 10px 20px'
     },
     navBar:{
-        background:background
+        background:background,
+    },
+    toolBar:{
+        display:'flex',
+        justifyContent:'space-between',
+        color:'white'
+    },
+    icon:{
+        color:'white'
     }
 });
 
 const EstablishmentDetail = (props) => {
+    console.log(props)
     const {establishment} = props.location.state;
     const classes= useStyles();
     const history = useHistory();
@@ -72,11 +83,20 @@ const EstablishmentDetail = (props) => {
     <>
         <ShowOnScroll {...props}>
             <AppBar className={classes.navBar}>
-                <Toolbar>
+                <Toolbar className={classes.toolBar}>
                     <IconButton  onClick={() => history.goBack()}>
-                        <ArrowBackIcon/>
+                        <ArrowBackIcon className={classes.icon}/>
                     </IconButton>
                     <Typography>{establishment.name}</Typography>
+                    <Link
+                          to={{
+                              pathname:'/establishmentDetailSearch',
+                              state:{establishment:establishment}
+                          }}>
+                        <IconButton  onClick={() => console.log('search')}>
+                            <SearchIcon className={classes.icon}/>
+                        </IconButton>
+                    </Link>
                 </Toolbar>
             </AppBar>
         </ShowOnScroll>
@@ -106,7 +126,7 @@ const EstablishmentDetail = (props) => {
                     <RoomIcon/> {establishment.address}
                 </Typography>
             </Paper>
-            <Menu />
+            <Menu establishment={establishment} />
         </div>
     </>
     )

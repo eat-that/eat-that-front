@@ -8,6 +8,7 @@ import {primary, secondary} from "./shared/colors";
 
 import EstablishmentDetail from "./components/Establishment/Details/EstablishmentDetail";
 import Home from "./components/Home/Home";
+import SearchItem from "./components/Establishment/Details/SearchItem";
 
 const theme = createMuiTheme({
     palette:{
@@ -33,7 +34,8 @@ function App() {
                         <Route path='/home'>
                             <Home/>
                         </Route>
-                        <Route path='/establishment/detail' render={(props)=> (<EstablishmentDetail {...props}/>)}/>
+                        <Route path='/establishmentDetail' render={(props)=> (<EstablishmentDetail {...props}/>)}/>
+                        <Route path='/establishmentDetailSearch' render={(props)=> (<SearchItem {...props}/>)}/>
                     </Switch>
                 </Router>
             </div>
