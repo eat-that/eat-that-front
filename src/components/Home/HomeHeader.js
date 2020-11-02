@@ -10,10 +10,12 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import PersonIcon from '@material-ui/icons/Person';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import CreateUserAccount from "../../components/Account/CreateUserAccount/CreateUserAccount";
+import {background} from "../../shared/colors";
 
 const useStyles = makeStyles((theme) => ({
     navBar:{
-        borderRadius: '0 0 10px 10px'
+        borderRadius: '0 0 10px 10px',
+        background:background
     },
 
     navBarContent:{
@@ -48,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
         color:'white'
     },
 }));
-const Header = () => {
+const HomeHeader = () => {
 
     const [open,setOpen] = React.useState(false);
 
@@ -69,20 +71,20 @@ const Header = () => {
                         </IconButton>
                     </div>
 
-                <div className={classes.row2}>
+                    <div className={classes.row2}>
                     <span className={classes.inputContainer}>
                         <InputBase
                             className={classes.input}
-                              placeholder="Que souhaitez-vous manger ?"
-                          />
+                            placeholder="Que souhaitez-vous manger ?"
+                        />
                         <IconButton type="submit" className={classes.icon}>
                             <SearchIcon />
                         </IconButton>
                     </span>
-                    <IconButton className={classes.icon}>
-                        <FilterListIcon/>
-                    </IconButton>
-                </div>
+                        <IconButton className={classes.icon}>
+                            <FilterListIcon/>
+                        </IconButton>
+                    </div>
 
                 </div>
             </Toolbar>
@@ -96,4 +98,4 @@ const Header = () => {
     )
 }
 
- export default Header;
+export default HomeHeader;
