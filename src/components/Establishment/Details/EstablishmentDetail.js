@@ -27,14 +27,17 @@ const useStyles = makeStyles({
         padding:'5px',
         color:'white'
     },
-    favButton:{
+    favAndSearchSpan:{
         position:'absolute',
         top:'10px',
         right:'10px',
+    },
+    favAndSearchButton:{
         backgroundColor:primary,
         borderRadius: '50%',
         padding:'5px',
-        color:'white'
+        color:'white',
+        marginLeft:'5px'
     },
     img : {
         height:'20vh',
@@ -74,7 +77,6 @@ const useStyles = makeStyles({
 });
 
 const EstablishmentDetail = (props) => {
-    console.log(props)
     const {establishment} = props.location.state;
     const classes= useStyles();
     const history = useHistory();
@@ -93,7 +95,7 @@ const EstablishmentDetail = (props) => {
                               pathname:'/establishmentDetailSearch',
                               state:{establishment:establishment}
                           }}>
-                        <IconButton  onClick={() => console.log('search')}>
+                        <IconButton>
                             <SearchIcon className={classes.icon}/>
                         </IconButton>
                     </Link>
@@ -105,9 +107,20 @@ const EstablishmentDetail = (props) => {
             <IconButton className={classes.backButton} onClick={() => history.goBack()}>
                 <ArrowBackIcon/>
             </IconButton>
-            <IconButton className={classes.favButton}>
-                <FavoriteBorderIcon/>
-            </IconButton>
+            <span className={classes.favAndSearchSpan}>
+                <IconButton className={classes.favAndSearchButton}>
+                    <FavoriteBorderIcon/>
+                </IconButton>
+                <Link
+                    to={{
+                        pathname:'/establishmentDetailSearch',
+                        state:{establishment:establishment}
+                    }}>
+                    <IconButton className={classes.favAndSearchButton}>
+                        <SearchIcon/>
+                    </IconButton>
+                </Link>
+            </span>
             <img className={classes.img} src={require('../../../shared/f765abb2-31b2-45d6-b9d3-b82778358a3b.jpg')} alt='picture'/>
             <Paper className={classes.paper}>
                 <Typography className={classes.name} variant='h4' component='h2' color='textPrimary'>{establishment.name}</Typography>
