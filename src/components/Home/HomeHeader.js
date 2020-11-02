@@ -11,6 +11,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import CreateUserAccount from "../../components/Account/CreateUserAccount/CreateUserAccount";
 import {background} from "../../shared/colors";
+import Search from "./Search";
 
 const useStyles = makeStyles((theme) => ({
     navBar:{
@@ -52,7 +53,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 const HomeHeader = () => {
 
-    const [open,setOpen] = React.useState(false);
+    const [open,setOpen] = React.useState({
+        createAccount : false,
+        search:false,
+    });
 
     const classes = useStyles();
 
@@ -66,7 +70,7 @@ const HomeHeader = () => {
                             <EmojiPeopleIcon className={classes.icon}/>
                             Votre position
                         </Button>
-                        <IconButton className={classes.icon} onClick={() => setOpen(true)}>
+                        <IconButton className={classes.icon} onClick={() => setOpen({...open,createAccount:true})}>
                             <PersonIcon/>
                         </IconButton>
                     </div>
@@ -81,7 +85,7 @@ const HomeHeader = () => {
                             <SearchIcon />
                         </IconButton>
                     </span>
-                        <IconButton className={classes.icon}>
+                        <IconButton className={classes.icon} onClick={() => setOpen({...open,search:true})}>
                             <FilterListIcon/>
                         </IconButton>
                     </div>
@@ -90,8 +94,13 @@ const HomeHeader = () => {
             </Toolbar>
 
             <CreateUserAccount
-                open={open}
-                setOpen={() => setOpen(false)}
+                open={open.createAccount}
+                setOpen={() => setOpen({...open, createAccount:false})}
+            />
+
+            <Search
+                open={open.search}
+                setOpen={() => setOpen({...open, search:false})}
             />
 
         </AppBar>
