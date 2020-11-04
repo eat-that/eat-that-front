@@ -138,6 +138,9 @@ const EstablishmentDetail = (props) => {
                 <Typography className={classes.p} variant="body2" color='textSecondary' component='p'>
                     <RoomIcon/> {establishment.address}
                 </Typography>
+                <Typography className={classes.p} variant="body2" color='textSecondary' component='p'>
+                    Type d'établissement : {establishment.type.map(t => `${t}  `)}
+                </Typography>
             </Paper>
             <Menu establishment={establishment} />
         </div>

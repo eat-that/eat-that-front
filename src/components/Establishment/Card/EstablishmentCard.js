@@ -10,6 +10,8 @@ import IconButton from "@material-ui/core/IconButton";
 import Chip from "@material-ui/core/Chip";
 import {primary, secondary} from "../../../shared/colors";
 import {Link} from "react-router-dom";
+import RestaurantIcon from '@material-ui/icons/Restaurant';
+import LocalBarIcon from '@material-ui/icons/LocalBar';
 
 
 const EstablishmentCard = (props) => {
@@ -43,6 +45,20 @@ const useStyles = makeStyles({
         right: '5px',
         background:secondary,
         color:'white'
+    },
+    establishmentType:{
+        position:'absolute',
+        top:'5px',
+        left:'5px',
+        display:'flex',
+        zIndex: 1
+    },
+    chip:{
+        background:secondary,
+        color:'white',
+        paddingLeft:'3px !important',
+        paddingRight:'3px !important',
+        borderRadius: '50%'
     }
 
 })
@@ -52,7 +68,7 @@ const useStyles = makeStyles({
         score:5,
         favorite:false,
         address:'6 avenue Deschepper 59270 Bailleul',
-        type:'Restaurant',
+        type:['Restaurant','Bar'],
         kitchen:'Bistrot',
         img:'../../../shared/f765abb2-31b2-45d6-b9d3-b82778358a3b.jpg',
         menu:  [
@@ -114,11 +130,23 @@ const useStyles = makeStyles({
     })
 
     const classes = useStyles();
+
+    const establishmentType = establishment.type.map(t=>
+        <Chip
+            className={classes.chip}
+            classes={{
+            label : classes.chip
+        }} label={t === 'Restaurant' ? <RestaurantIcon fontSize='small'/> : <LocalBarIcon fontSize='small'/>}/>
+    )
+
     return (
         <Card className={classes.card}>
                 <IconButton className={classes.favButton}>
                     <FavoriteBorderIcon/>
                 </IconButton>
+                <span className={classes.establishmentType}>
+                    {establishmentType}
+                </span>
             <Link className={classes.link}
                 to={{
                 pathname:'/establishmentDetail',
